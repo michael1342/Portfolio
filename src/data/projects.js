@@ -302,7 +302,7 @@ export const about = {
     "My projects have taken me from React interfaces to APIs, payments, permissions, and background jobs. I like learning by building, investigating what breaks, and improving my approach along the way.",
     "Outside programming, I enjoy anime."
   ],
-  "location": "Nigeria",
+  "location": "Lagos, Nigeria",
   "availableForWork": true
 };
 
