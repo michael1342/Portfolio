@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Michael Anazodo — Software Engineer</title>
+    <meta name="description" content="Portfolio of Michael Anazodo, a full-stack software engineer specialising in React, Node.js, and MongoDB." />
+    <meta name="theme-color" content="#060d1a" />
+    <!-- Open Graph -->
+    <meta property="og:title" content="Michael Anazodo — Software Engineer" />
+    <meta property="og:description" content="Full-stack engineer building fast, purposeful web products." />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- Set theme before React renders to prevent flash -->
+    <script>
+      (function () {
+        var stored = localStorage.getItem('portfolio-theme');
+        var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', stored || preferred);
+      })();
+    </script>
+  </body>
+</html>

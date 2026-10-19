@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Light theme (default)
+═══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Colors */
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #64748b;
+
+  /* Blue-focused accent */
+  --color-accent: #2563eb; /* blue-600 */
+  --color-accent-hover: #1d4ed8; /* blue-700 */
+  --color-accent-light: #dbeafe; /* blue-100 */
+  --color-cursor-glow-soft: rgba(59, 130, 246, 0.1);
+  --color-cursor-glow-core: rgba(37, 99, 235, 0.1);
+
+  /* Misc */
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, Consolas, monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK THEME — Blue-focused
+═══════════════════════════════════════════════════════════════════ */
+[data-theme="dark"] {
+  --color-background: #060d1a;
+  --color-surface: #0d1b2e;
+  --color-surface-alt: #112038;
+  --color-border: #1e3a5f;
+  --color-text-primary: #e8f0fe;
+  --color-text-secondary: #7da8d4;
+
+  --color-accent: #60a5fa; /* blue-400 — brighter in dark */
+  --color-accent-hover: #93c5fd; /* blue-300 */
+  --color-accent-light: rgba(96, 165, 250, 0.12);
+  --color-cursor-glow-soft: rgba(96, 165, 250, 0.12);
+  --color-cursor-glow-core: rgba(96, 165, 250, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   GLOBAL RESET & BASE
+═══════════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.pointer-glow-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.pointer-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  translate: -50% -50%;
+  will-change: transform;
+}
+
+.pointer-glow-trail {
+  width: 38rem;
+  height: 38rem;
+  background: radial-gradient(
+    circle,
+    var(--color-cursor-glow-soft) 0%,
+    transparent 70%
+  );
+  filter: blur(22px);
+}
+
+.pointer-glow-core {
+  width: 24rem;
+  height: 24rem;
+  background: radial-gradient(
+    circle,
+    var(--color-cursor-glow-core) 0%,
+    transparent 68%
+  );
+  filter: blur(16px);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  transition:
+    background-color 0.3s ease,
+    color 0.2s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   TAILWIND THEME EXTENSIONS via CSS custom properties
+═══════════════════════════════════════════════════════════════════ */
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, Consolas, monospace;
+
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-text-primary);
+  --color-secondary: var(--color-text-secondary);
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-light: var(--color-accent-light);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   UTILITY CLASSES
+═══════════════════════════════════════════════════════════════════ */
+
+/* Focus ring — keyboard accessibility */
+.focus-ring {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.focus-ring:focus-visible {
+  outline-color: var(--color-accent);
+}
+
+/* Text gradient — headline accent */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-accent) 0%,
+    #818cf8 60%,
+    #a78bfa 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Slow pulse animation for background orbs */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.12s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2);
+}
+.btn-primary:focus-visible {
+  outline-color: var(--color-accent);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.625rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease,
+    box-shadow 0.18s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.btn-outline:focus-visible {
+  outline-color: var(--color-accent);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1rem;
+  border-radius: 0.625rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    color 0.18s ease,
+    background-color 0.18s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.btn-ghost:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface-alt);
+}
+.btn-ghost:focus-visible {
+  outline-color: var(--color-accent);
+}
+
+/* ─── Selection ───────────────────────────────────────────────────── */
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ─── Custom scrollbar ────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ─── Sr-only ─────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.sr-only.focus\:not-sr-only:focus,
+.focus\:not-sr-only:focus {
+  position: fixed;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
