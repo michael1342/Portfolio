@@ -294,7 +294,7 @@ export const social = {
   "email": "michaelanazodo2024@gmail.com"
 };
 
-export const resumeUrl = "Michael-Anazodo-LinkedIn-Resume.pdf";
+export const resumeUrl = "Michael-Anazodo-Resume.pdf";
 
 export const about = {
   "bio": [
