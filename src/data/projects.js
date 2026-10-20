@@ -23,7 +23,7 @@ export const projects = [
       "BullMQ"
     ],
     "status": "Live",
-    "year": "[REVIEW: Confirm project year]",
+    "year": "2026",
     "role": "Full-Stack Developer",
     "liveUrl": "https://vtunova.cv",
     "sourceUrl": null,
@@ -85,7 +85,7 @@ export const projects = [
       "Role-Based Access"
     ],
     "status": "[REVIEW: Confirm current availability]",
-    "year": "[REVIEW: Confirm project year]",
+    "year": "2026",
     "role": "Full-Stack Developer",
     "liveUrl": "https://invoice-flow2.vercel.app/",
     "sourceUrl": null,
@@ -149,7 +149,7 @@ export const projects = [
       "UI Development"
     ],
     "status": "Frontend Only",
-    "year": "[REVIEW: Confirm project year]",
+    "year": "2026",
     "role": "Frontend Developer",
     "liveUrl": "https://next-cord-social.vercel.app/",
     "sourceUrl": null,
@@ -201,7 +201,7 @@ export const projects = [
       "Client Project"
     ],
     "status": "Unreleased",
-    "year": "[REVIEW: Confirm project year]",
+    "year": "2026",
     "role": "Developer — PHP/Laravel",
     "liveUrl": null,
     "sourceUrl": null,
